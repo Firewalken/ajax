@@ -14,7 +14,11 @@ function sendRequest(params) {
             // document.getElementById("demo").innerHTML = this.responseText;
             console.log("пришел ответ от сервер")
             // console.log(this.responseText)
-            ajaxInsert(this.responseText);
+            if (document.getElementById("ajaxTable") === null) {
+                ajaxInsert(this.responseText);
+            } else {
+                alert("Таблица уже создана");
+            }
 
         } else {
             console.log("this.readyState: " + this.readyState);
@@ -28,12 +32,55 @@ function sendRequest(params) {
 
 function ajaxInsert(data) {
     let result = JSON.parse(data);
-    // console.log(result)
-    // console.log(result)
-    result.forEach(element => {
-        console.log(element.title)
-        let newItem = document.createElement("P");
-        newItem.textContent = element.title;
-        ajaxResultsWrapper.appendChild(newItem);
+
+    // 1. Создаём таблицу
+    let resultTable = {
+        tag: "table",
+        id: "ajaxTable",
+        place: ajaxResultsWrapper
+    }
+    createEl(resultTable); // Создаем таблица
+
+    result.forEach( (element, index) => {
+        console.log(element)
+        let row = {
+            tag: "tr",
+            id: "row_"+index,
+            place: document.getElementById("ajaxTable")
+        }
+        // 2. "Находим" эту таблицу и заполняем данными
+        createEl(row); // Создаем строки таблицы
+
+        // Наполняем строки - Создаем колонки таблицы
+        for (let elementKey in element) {
+            console.log(elementKey+ ": " + element[elementKey]);
+            let col = {
+                tag: "td",
+                content: element[elementKey],
+                place: document.getElementById("row_"+index)
+            }
+            createEl(col);
+          }
+        
+
+        // let newItem = document.createElement("P");
+        // newItem.textContent = element.title;
+        // ajaxResultsWrapper.appendChild(newItem);
     });
 }
+
+function createEl(obj) {
+    let newItem = document.createElement(obj.tag);
+    newItem.setAttribute("id", obj.id);
+    newItem.textContent = obj.content;
+    obj.place.appendChild(newItem);
+}
+
+
+function createElOLD(tagName, innerContent, place, id) {
+    let newItem = document.createElement(tagName);
+    newItem.textContent = innerContent;
+    place.appendChild(newItem);
+}
+
+
