@@ -41,9 +41,31 @@
         <li>git reset --hard - (обновление рабочей категории) - отменяет все изменения в каталоге</li>
     </ul>
 
+
+    <script src="assets/js/handlebars-v4.1.2.js"></script>
+    <!-- <script id="entry-template" type="text/x-handlebars-template">
+      <div class="entry">
+        <h1>{{title}}</h1>
+        <p>{{someinfo}}</p>
+      </div>
+    </script> -->
+    <script id="ajax_table_hbs" type="text/x-handlebars-template">
+        <h2>{{author}}</h2>
+      <table id="ajaxTable">
+
+        {{#each rows}}
+            <tr>
+                <td>title - <b>{{title}}</b><br>body - {{body}}</td>
+                <td>id - {{id}}</td>
+                <td>userId - {{userId}}</td>
+                <td><img src="{{thumbnailUrl}}" alt=""></td>
+                <td>{{url}}</td>
+            </tr>
+        {{/each}}
+
+      </table>
+    </script>
     
-
-
     <script src="assets/js/script.js"></script>
 </body>
 </html>
