@@ -1,9 +1,9 @@
 "use strict"
 
-const objectsTest = document.querySelector(".objectsTest");
-const objectsTitle = document.querySelector(".objectsTitle");
+const arraysTest = document.querySelector(".arraysTest");
+const arraysTitle = document.querySelector(".arraysTitle");
 
-objectsTitle.addEventListener("click", function (e) {
+arraysTitle.addEventListener("click", function (e) {
     console.log(this);
     this.style.color="red";
 }) 
@@ -18,11 +18,13 @@ const user = {
     thumbnailUrl:	"https://via.placeholder.com/150/197d29"
 }
 
+const userArray = [1, "hello", "Danil", user]
+
+const arr = ["new", "111111111"]
 
 
-console.log(user["title"]);
-// console.log(user[KEYS[i]]);
 
+console.log(userArray);
 
 function showObjValues(obj) {
     // console.log(this);
