@@ -12,8 +12,29 @@
 <body>
     
     <h1 class="stringsTitle" data-num="100">Работа со <span>строками</span></h1>
+    
+    <button id="ajaxButton">Вывести список пользователей</button>
+
+    <div class="tableWrapper"></div>
 
     <div class="stringsTest"></div>
+
+
+    <script src="../assets/js/handlebars-v4.1.2.js"></script>
+
+    <script id="ajax_table_hbs" type="text/x-handlebars-template">
+      <table id="ajaxTable">
+
+        {{#each rows}}
+            <tr>
+                <td>{{user}}</td>
+                <td>empty</td>
+                <td>empty</td>
+            </tr>
+        {{/each}}
+
+      </table>
+    </script>
 
 
 

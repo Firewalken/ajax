@@ -7,6 +7,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 const stringsTest = document.querySelector(".stringsTest");
 const stringsTitle = document.querySelector(".stringsTitle");
+const ajaxButton = document.querySelector("#ajaxButton");
 
 
 let randomString = "some random words";
@@ -38,3 +39,18 @@ function showObjValues(obj) {
 
 
 }
+
+let userArr = [{user: "Danil"}, {user: "Petr"}, {user: "Andrey"}];
+
+
+ajaxButton.addEventListener("click", function (e) {
+
+
+var ajaxTableHTML = document.querySelector("#ajax_table_hbs").innerHTML;
+var ajaxTableTemplate = Handlebars.compile(ajaxTableHTML);
+
+var context = { rows: userArr };
+var readyTableHTML = ajaxTableTemplate(context);
+
+document.body.innerHTML = readyTableHTML;
+})
